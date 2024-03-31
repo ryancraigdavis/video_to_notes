@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "video-to-notes"
+version = "0.1.0"
+description = "Takes a video and returns back notes summarizing said video."
+authors = ["Ryan Davis <ryancraigdavis@github.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [
+    { include = "src/video_to_notes", from = "." }
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+quart = "^0.19.4"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
