@@ -3,6 +3,7 @@ import tempfile
 from quart import Quart, request
 
 app = Quart(__name__)
+app.config["MAX_CONTENT_LENGTH"] = 500 * 1024 * 1024
 
 
 @app.route("/upload", methods=["POST"])
@@ -20,8 +21,8 @@ async def upload_video():
     if not video_file.filename.lower().endswith(".mp4"):
         return "Invalid file format. Only MP4 files are allowed.", 400
 
-    temp_dir = tempfile.mkdtemp()
-    video_path = os.path.join(temp_dir, video_file.filename)
+    upload_directory = tempfile.mkdtemp()
+    video_path = os.path.join(upload_directory, video_file.filename)
     await video_file.save(video_path)
 
     return f"Video uploaded successfully. Saved to: {video_path}", 200
